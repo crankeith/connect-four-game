@@ -13,16 +13,26 @@ class Board {
     createSpaces(){
         const spaces = [];
 
-        for(let x = this.rows; x > 0; x--){
+        for(let x = 0; x < this.columns; x++){
             const column = [];
 
-            for(let y = this.columns; y > 0; y--) {
+            for(let y = 0; y < this.rows; y++) {
                 column.push(new Space(x, y))
             }
 
             spaces.push(column);
         }
-
         return spaces;
+    }
+
+    /**
+     * Loop through the spaces array and call the drawSVGSpace method
+     */
+    drawHTMLBoard(){
+        for(let column of this.spaces){
+            for(let space of column) {
+                space.drawSVGSpace();
+            }
+        }
     }
 }
